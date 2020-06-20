@@ -101,17 +101,6 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "",
-                    "id": "083208c8-1203-4a09-bb75-712f3fc7ab26",
-                    "path": "<Mouse>/position",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "2D Vector",
                     "id": "8a38294d-60d2-49e9-997f-ef8e67602d19",
                     "path": "2DVector",
@@ -173,6 +162,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "GamePad",
+                    "action": "Direction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a641c366-2ba7-4526-99e0-5e961421e5f4",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
                     "action": "Direction",
                     "isComposite": false,
                     "isPartOfComposite": false

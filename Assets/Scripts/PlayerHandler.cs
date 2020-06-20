@@ -16,6 +16,10 @@ public class PlayerHandler : MonoBehaviour
 
     public float keyFrameDelta = 1.5f;
 
+    public Transform PlayerModel;
+
+    public float RotationSpeed = 0f;
+
     private void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -38,7 +42,21 @@ public class PlayerHandler : MonoBehaviour
     {
         lookPosition = obj.ReadValue<Vector2>();
     }
-    
+
+    private void OnAnimatorIK(int layerIndex)
+    {
+        if (layerIndex == 0)
+        {
+            Ray lookAtRay = new Ray(transform.position, Camera.main.transform.forward);
+            Vector3 lookAtPosition = lookAtRay.GetPoint(20);
+
+            Debug.DrawRay(transform.position, Camera.main.transform.forward * 20, Color.red);
+            //  Target.position = lookAtPosition;
+
+            // Animator.SetLookAtPosition(lookAtPosition);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     { 
@@ -56,6 +74,18 @@ public class PlayerHandler : MonoBehaviour
         animator.SetFloat("DirectionVertical", verLerp);
 
         mLastDirection = new Vector2(horLerp, verLerp) ;
+
+        HandleLocomotionRotation();
+    }
+
+    private void HandleLocomotionRotation()
+    {
+        if (mLastDirection.y > 0.1f)
+        {
+            Vector3 rotationOffset = Camera.main.transform.TransformDirection(mLastDirection);
+            rotationOffset.y = 0;
+            PlayerModel.forward += Vector3.Lerp(PlayerModel.forward, rotationOffset, Time.deltaTime * RotationSpeed);
+        }
     }
 
     private void OnEnable()
