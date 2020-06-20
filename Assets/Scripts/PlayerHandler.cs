@@ -81,10 +81,13 @@ public class PlayerHandler : MonoBehaviour
     private void HandleLocomotionRotation()
     {
         if (mLastDirection.y > 0.1f)
-        {
-            Vector3 rotationOffset = Camera.main.transform.TransformDirection(mLastDirection);
+        { 
+            Transform cameraTransform = Camera.main.transform;
+            Vector3 rotationOffset = cameraTransform.TransformDirection(new Vector2(0, mLastDirection.y));
+            
             rotationOffset.y = 0;
             PlayerModel.forward += Vector3.Lerp(PlayerModel.forward, rotationOffset, Time.deltaTime * RotationSpeed);
+        
         }
     }
 
