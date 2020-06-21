@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\Input\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraLook.cs" />
+    <Compile Include="Assets\Scripts\IKObject\IKGameObject.cs" />
+    <Compile Include="Assets\Scripts\IKObject\WeaponIK.cs" />
     <Compile Include="Assets\Scripts\Player\IKAnimation.cs" />
     <Compile Include="Assets\Scripts\PlayerHandler.cs" />
     <Reference Include="Unity.Timeline.Editor">

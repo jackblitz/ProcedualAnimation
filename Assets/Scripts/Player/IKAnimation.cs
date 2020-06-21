@@ -7,9 +7,10 @@ public class IKAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
     public TwoBoneIKConstraint HipConstraint; public GameObject HipController;
+    public MultiParentConstraint HeadContraint; public GameObject HeadController;
+
     public TwoBoneIKConstraint LeftHandConstraint; public GameObject LeftHandController;
     public TwoBoneIKConstraint RightHandConstraint; public GameObject RightHandController;
-    public MultiParentConstraint HeadContraint; public GameObject HeadController;
 
     void Start()
     {
@@ -20,5 +21,15 @@ public class IKAnimation : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public Quaternion getHipRotation()
+    {
+        return HipController.transform.rotation;
+    }
+
+    public Quaternion getHeadRotation()
+    {
+        return HeadController.transform.rotation;
     }
 }
