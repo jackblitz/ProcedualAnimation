@@ -63,12 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Back-Up\Scripts\IKObject\IKGameObject.cs" />
+    <Compile Include="Assets\Back-Up\Scripts\IKObject\WeaponIK.cs" />
+    <Compile Include="Assets\Back-Up\Scripts\Player\IKAnimation.cs" />
+    <Compile Include="Assets\Back-Up\Scripts\PlayerHandler.cs" />
     <Compile Include="Assets\Input\PlayerInputActions.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraLook.cs" />
-    <Compile Include="Assets\Scripts\IKObject\IKGameObject.cs" />
-    <Compile Include="Assets\Scripts\IKObject\WeaponIK.cs" />
-    <Compile Include="Assets\Scripts\Player\IKAnimation.cs" />
-    <Compile Include="Assets\Scripts\PlayerHandler.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAiming.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerLocomotion.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Projects/Unity/ProcedualAnimation/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
@@ -137,6 +139,12 @@
     </Reference>
     <Reference Include="com.unity.quicksearch">
       <HintPath>C:/Projects/Unity/ProcedualAnimation/Library/ScriptAssemblies/com.unity.quicksearch.dll</HintPath>
+    </Reference>
+    <Reference Include="Cinemachine">
+      <HintPath>C:/Projects/Unity/ProcedualAnimation/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+      <HintPath>C:/Projects/Unity/ProcedualAnimation/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

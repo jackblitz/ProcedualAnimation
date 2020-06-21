@@ -69,8 +69,8 @@ public class CameraLook : MonoBehaviour
 
             transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
         }
+        Vector3 newPosition = new Vector3(Target.position.x, transform.position.y, Target.position.z);
 
-        transform.position = Vector3.MoveTowards(transform.position, Target.position, Delta * Time.deltaTime);
-
+        transform.position = Vector3.MoveTowards(transform.position, newPosition, Delta * Time.deltaTime);
     }
 }
