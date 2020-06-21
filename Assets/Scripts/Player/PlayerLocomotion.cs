@@ -40,6 +40,12 @@ public class PlayerLocomotion : MonoBehaviour
         mAnimation.SetFloat("DirectionY", verLerp);
 
         lastDirection = new Vector2(horLerp, verLerp);
+
+        Vector3 rotationOffset = Camera.main.transform.TransformDirection(new Vector3(lastDirection.x, 0, lastDirection.y)) ;
+
+       // rotationOffset.y = 0;
+     //   transform.forward += Vector3.Lerp(transform.forward, rotationOffset, Time.deltaTime * 500);
+
     }
 
     private void OnEnable()

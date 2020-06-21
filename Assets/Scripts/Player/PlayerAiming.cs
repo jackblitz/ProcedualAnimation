@@ -21,8 +21,11 @@ public class PlayerAiming : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float yawCamera = mMainCamera.transform.rotation.eulerAngles.y;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.fixedDeltaTime);
+     /*   if (mLastDirection.y > 0.1f)
+        {
+            float yawCamera = mMainCamera.transform.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.fixedDeltaTime);
+        }*/
     }
 }
 
