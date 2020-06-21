@@ -15,8 +15,8 @@ public class PlayerAiming : MonoBehaviour
     {
         mMainCamera = Camera.main;
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+       // Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
