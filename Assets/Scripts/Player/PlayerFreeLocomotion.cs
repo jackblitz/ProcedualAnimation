@@ -18,12 +18,14 @@ public class PlayerFreeLocomotion : MonoBehaviour
     private float RotateSpeed = 15f;
 
     public Animator mAnimation { get; private set; }
-    public Vector2 lastDirection { get; private set; }
+    public Vector3 lastDirection { get; private set; }
 
     public Transform Target;
     public float turnSpeed = 8;
 
     public Transform Model;
+    private float mMomentumShift;
+
     void Awake()
     {
         mInputActions = new PlayerInputActions();
@@ -40,10 +42,6 @@ public class PlayerFreeLocomotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horLerp = Mathf.Lerp(lastDirection.x, move.x, mKeyFrameDelta * Time.deltaTime);
-        float verLerp = Mathf.Lerp(lastDirection.y, move.y, mKeyFrameDelta * Time.deltaTime);
-
-        lastDirection = new Vector2(horLerp, verLerp);
 
         HandleInputData();
 
@@ -54,17 +52,44 @@ public class PlayerFreeLocomotion : MonoBehaviour
     private void HandleLocomotionRotation()
     {
         float yawCamera = Camera.main.transform.rotation.eulerAngles.y;
-       // transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.deltaTime);
+       if (lastDirection.magnitude > 0)
+     {
+            Vector3 rotationOffset = Camera.main.transform.TransformDirection(lastDirection);
+            rotationOffset.y = 0;
 
-        Vector3 rotationOffset = Camera.main.transform.TransformDirection(new Vector3(move.x, 0 , move.y));
-        rotationOffset.y = 0;
-       
-        Model.forward = rotationOffset;
-        Debug.Log(rotationOffset);
+            float calculatedTurnSpeed = 1;
+
+            if (mMomentumShift >= 1)
+            {
+                Model.forward = rotationOffset;//rotationOffset;
+            }
+            else
+            {
+                Model.forward += Vector3.Lerp(Model.forward, rotationOffset, Time.deltaTime * (turnSpeed * calculatedTurnSpeed));//rotationOffset;
+            }
+            // Quaternion rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, yawCamera, 0), turnSpeed * Time.deltaTime);
+            //transform.rotation = rotation;
+            
+            //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(rotationOffset, Vector3.up), turnSpeed * Time.deltaTime);
+        }
+        
     }
 
     private void HandleInputData()
     {
+        float horLerp = move.x;//Mathf.Lerp(lastDirection.x, move.x, mKeyFrameDelta * Time.deltaTime);
+        float verLerp = move.y;//Mathf.Lerp(lastDirection.y, move.y, mKeyFrameDelta * Time.deltaTime);
+
+        Vector3 directionShift = lastDirection - new Vector3(horLerp, 0, verLerp);
+        mMomentumShift = directionShift.sqrMagnitude;
+
+        if (mMomentumShift != 0)
+        {
+            Debug.Log(mMomentumShift);
+        }
+
+        lastDirection = new Vector3(horLerp, 0, verLerp);
+
         mAnimation.SetFloat("Speed", Vector3.ClampMagnitude(move, 1).magnitude);
     }
 

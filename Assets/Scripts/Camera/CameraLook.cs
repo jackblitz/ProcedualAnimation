@@ -47,7 +47,7 @@ public class CameraLook : MonoBehaviour
         mousePosition = obj.ReadValue<Vector2>();
     }
 
-    void Update()
+    private void FixedUpdate()
     {
         if (axes == RotationAxes.MouseXAndY)
         {
@@ -69,6 +69,10 @@ public class CameraLook : MonoBehaviour
 
             transform.localEulerAngles = new Vector3(-rotationY, transform.localEulerAngles.y, 0);
         }
+    }
+
+    void LateUpdate()
+    {
         Vector3 newPosition = new Vector3(Target.position.x, transform.position.y, Target.position.z);
 
         transform.position = Vector3.MoveTowards(transform.position, newPosition, Delta * Time.deltaTime);
